@@ -23,7 +23,10 @@ function resetGame() {
     //pick a random code when resetting the game
     pickRandomCode();
     // You'll need to activate the submit button
+    submitButton.disabled = false; 
     // You'll want to clear any rows from a previous game if they exist
+    let gameBoard = document.getElementById('gameBoard')
+    gameBoard.textContent = ' ';
 }
 //a function here that will pick a random 4-color code and
 //store it as an array in the variable named secretCode.
@@ -37,10 +40,16 @@ function pickRandomCode() {
 }
 //You'll need to create an event listener on the submit button for when
 //the user makes a guess.
-
+function guess(){
+    let newRow = document.createElement('div');
+    newRow.classList.add('mmRow')
+    let guessDiv = document.createElement('div')
+    guessDiv.classList.add('guess');
+    let feedbackDiv = document.createElement('div')
+    feedbackDiv.classList.add('feedback')
 //Every time the user makes a guess, you need to append a new row in the board.
 //I suggest that you make a row look something like this:
-
+}
 /*
     <div class="mmRow">
         <div class="guess">
