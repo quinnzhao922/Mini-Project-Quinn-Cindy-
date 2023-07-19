@@ -1,2 +1,3 @@
-# Mini-Project-Quinn-Cindy-
+# Mini-Project
 quinn
+

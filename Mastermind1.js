@@ -17,6 +17,7 @@ function changeColor() {
     }
 }
 let submitButton = document.getElementById("submit");
+submitButton.addEventListener('click', guess, false)
 //reset the game
 resetGame();
 function resetGame() {
@@ -24,6 +25,7 @@ function resetGame() {
     pickRandomCode();
     // You'll need to activate the submit button
     reset.addEventListener("click", submit, false); 
+    submitButton.disabled = false; 
     // You'll want to clear any rows from a previous game if they exist
     
 }
@@ -87,6 +89,53 @@ function guess(){
         }
     }      
 //I suggest that you make a row look something like this:
+function guess(){
+    let newRow = document.createElement('div');
+    newRow.classList.add('mmRow')
+    let guessDiv = document.createElement('div')
+    guessDiv.classList.add('guess');
+    let feedbackDiv = document.createElement('div')
+    feedbackDiv.classList.add('feedback')
+    
+    for (let i = 0; i < 4; i++){
+        let guessIndicator = document.createElement('div')
+        let selectedColor = selects[i].value;
+        guessIndicator.classList.add('indicator', selectedColor);
+        guessDiv.appendChild(guessIndicator);
+    }
+    for (let i = 0; i < 4; i++){
+        let feedbackIndicator = document.createElement('div')
+        feedbackIndicator.classList.add('indicator');
+        feedbackDiv.appendChild(feedbackIndicator);
+    }
+        newRow.appendChild(guessDiv)
+        newRow.appendChild(feedbackDiv);
+
+        let gameBoard = document.getElementById('gameBoard');
+        gameBoard.appendChild(newRow);
+
+        checkGuess(guessDiv, feedbackDiv);
+        function checkGuess (guessDiv, feedbackDiv){
+            let guess = [];
+            let feedback = [];
+            for (let i = 0; i < 4; i ++){
+                guess.push(guessDiv.children[i].classList[1]);
+                if (guess [i] == secretCode[i]){
+                    feedback.push("black");
+                }
+                else {
+                    feedback.push("white");
+                }
+                for (let i = 0; i < feedback.length; i++){
+                    let feedbackIndicator = document.createElement('div')
+                    feedbackDiv.children[i].classList.add(feedback[i])
+                    feedbackDiv.appendChild(feedbackIndicator);
+                }
+            }
+        }
+//Every time the user makes a guess, you need to append a new row in the board.
+//I suggest that you make a row look something like this:
+}
 /*
     <div class="mmRow">
         <div class="guess">
